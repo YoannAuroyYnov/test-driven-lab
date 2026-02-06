@@ -1,8 +1,13 @@
 # Test Driven Lab
 
-This project implements a simple `calculateAge` utility and a test
-suite using Jest. It was created for an academic assignment in a Master's
-course on testing and unit tests.
+A comprehensive testing project implementing validation utilities with full unit test coverage. Created as part of a Master's course on testing and unit tests in fullstack development.
+
+This project demonstrates test-driven development (TDD) practices with multiple validation functions:
+
+- Age validation (`calculateAge`, `validateAge`)
+- French zip code validation (`validateZipCode`)
+- Identity validation (`validateIndentity`)
+- Email validation (`validateEmail`)
 
 ## Project
 
@@ -27,11 +32,15 @@ Run the test suite with:
 pnpm test
 ```
 
-## Project structure
+## Project Structure
 
-- `module.js` - implementation of `calculateAge`.
-- `module.test.js` - unit tests exercising edge cases
-  (missing params, invalid dates, leap-day handling, future dates, etc.).
+```
+├── module.js              # Core calculateAge implementation
+├── validator.js           # Additional validation functions
+├── module.test.js         # Tests for calculateAge
+├── validator.test.js      # Tests for validators
+└── custom.errors.js       # Custom error classes
+```
 
 ## License
 
