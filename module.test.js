@@ -40,40 +40,34 @@ describe("calculateAge", () => {
   });
 
   it("should throw a 'missing param' error", () => {
-    expect(() => calculateAge()).toThrow("missing param: p");
+    expect(() => calculateAge()).toThrow("missing param");
   });
 
   it("non-object param throws (e.g. number)", () => {
-    expect(() => calculateAge(123)).toThrow(
-      "missing param: p is not an object",
-    );
+    expect(() => calculateAge(123)).toThrow("missing param");
   });
 
   it("should throw a 'missing param' error if p doesn't have a birth property", () => {
     expect(() => calculateAge({ name: "John", age: 30 })).toThrow(
-      "missing param: birth",
+      "missing param",
     );
   });
 
-  it("should return 'bad param' error if birth is null", () => {
-    expect(() => calculateAge({ birth: null })).toThrow("missing param: birth");
+  it("should return 'missing param' error if birth is null", () => {
+    expect(() => calculateAge({ birth: null })).toThrow("missing param");
   });
 
-  it("should return 'bad param' error if birth is undefined", () => {
-    expect(() => calculateAge({ birth: undefined })).toThrow(
-      "missing param: birth",
-    );
+  it("should return 'missing param' error if birth is undefined", () => {
+    expect(() => calculateAge({ birth: undefined })).toThrow("missing param");
   });
 
   it("should return 'bad param' error if birth is not a date", () => {
-    expect(() => calculateAge({ birth: "not a date" })).toThrow(
-      "bad param, birth should be a date",
-    );
+    expect(() => calculateAge({ birth: "not a date" })).toThrow("bad param");
   });
 
   it("should return 'bad param' error if birth is not a valid date", () => {
     expect(() => calculateAge({ birth: new Date("31/12/1986") })).toThrow(
-      "bad param, birth should be a date",
+      "bad param",
     );
   });
 

@@ -6,15 +6,10 @@
  */
 
 export function calculateAge(p) {
-  if (!p || !p.birth) {
-    let message = "";
-    if (!p) message = "p";
-    if (p && !p.birth) message = "birth";
-    if (p && !(p instanceof Object)) message = "p is not an object";
-
-    throw new Error(`missing param: ${message}`);
+  if (!p || !p.birth || p.birth === null || p.birth === undefined) {
+    throw new Error("missing param");
   } else if (!(p.birth instanceof Date) || isNaN(p.birth.getTime())) {
-    throw new Error("bad param, birth should be a date");
+    throw new Error("bad param");
   } else if (p.birth > new Date()) {
     throw new Error(
       "Persons from the future are not allowed to calculate their age",
