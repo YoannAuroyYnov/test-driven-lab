@@ -66,4 +66,16 @@ export function validateIndentity(p) {
  * @param {object} p An object representing a person, implementing an email
  * @return {boolean} true if the email is valid, false otherwise
  */
-export function validateEmail(p) {}
+export function validateEmail(p) {
+  if (!p || !(p instanceof Object) || !p.email)
+    throw new Error("missing param");
+
+  const { email } = p;
+  if (typeof email !== "string") throw new Error("bad param");
+
+  const validEmailRegexp =
+    /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9]+([.-][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/;
+  const isValid = validEmailRegexp.test(email);
+
+  return isValid;
+}

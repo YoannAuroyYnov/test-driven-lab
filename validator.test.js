@@ -185,4 +185,62 @@ describe("validateIndentity", () => {
  * @function validateEmail
  */
 
-describe("validateEmail", () => {});
+describe("validateEmail", () => {
+  describe.each([
+    { email: "user@example.com" },
+    { email: "john.doe@company.fr" },
+    { email: "marie_claire@domain.co.uk" },
+    { email: "contact+newsletter@site.com" },
+    { email: "admin123@sub.domain.org" },
+    { email: "info@company-name.com" },
+  ])("valid email", (email) => {
+    it(`should return true for ${email}`, () => {
+      expect(validateEmail(email)).toBe(true);
+    });
+  });
+
+  describe.each([
+    { email: "invalid.email" },
+    { email: "@example.com" },
+    { email: "user@" },
+    { email: "user @example.com" },
+    { email: "user@exam ple.com" },
+    { email: "user<script>@example.com" },
+    { email: "user@example.com<script>" },
+    { email: "user@exam>ple.com" },
+    { email: "user:hack@example.com" },
+    { email: "user/admin@example.com" },
+    { email: "user\\root@example.com" },
+    { email: "user[inject]@example.com" },
+    { email: "user{xss}@example.com" },
+    { email: "user@example..com" },
+    { email: "user@@example.com" },
+    { email: "user@" },
+    { email: "@domain.com" },
+  ])("invalid email", (emailCase) => {
+    it(`should return false for ${emailCase.email}`, () => {
+      expect(validateEmail(emailCase)).toBe(false);
+    });
+  });
+
+  describe.each([
+    () => validateEmail(),
+    () => validateEmail(true),
+    () => validateEmail({}),
+    () => validateEmail({ email: null }),
+    () => validateEmail({ email: undefined }),
+  ])("missing param", (testCase) => {
+    it(`should throw a 'missing param' error`, () => {
+      expect(() => testCase()).toThrow("missing param");
+    });
+  });
+
+  describe.each([
+    () => validateEmail({ email: 123456 }),
+    () => validateEmail({ email: true }),
+  ])("bad param", (testCase) => {
+    it(`should throw a 'bad param' error for ${testCase}`, () => {
+      expect(() => testCase()).toThrow("bad param");
+    });
+  });
+});
