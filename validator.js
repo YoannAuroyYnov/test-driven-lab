@@ -45,7 +45,20 @@ export function validateZipCode(p) {
  * @param {object} p An object representing a person, implementing a firstName and a lastName
  * @return {boolean} true if the first name and last name are valid, false otherwise
  */
-export function validateIndentity(p) {}
+export function validateIndentity(p) {
+  if (!p || !(p instanceof Object) || !p.firstname || !p.lastname)
+    throw new Error("missing param");
+
+  const { firstname, lastname } = p;
+  if (typeof firstname !== "string" || typeof lastname !== "string")
+    throw new Error("bad param");
+
+  const validNameRegexp = /^[a-zA-ZÀ-ÿ\s'-]+$/;
+  const isValid =
+    validNameRegexp.test(firstname) && validNameRegexp.test(lastname);
+
+  return isValid;
+}
 
 /**
  * Validates if the given email is valid.
