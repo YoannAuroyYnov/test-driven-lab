@@ -69,57 +69,52 @@ describe("validateAge", () => {
  */
 
 describe("validateZipCode", () => {
-  it("should return true for a valid French zip code", () => {
-    const validsZipCodes = [
-      "75001",
-      "20167",
-      "97139",
-      "97600",
-      "35200",
-      "06000",
-    ];
-    validsZipCodes.forEach((zip) => {
-      expect(validateZipCode({ zipCode: zip })).toBe(true);
+  describe.each([
+    { zipCode: "75001" },
+    { zipCode: "20167" },
+    { zipCode: "97139" },
+    { zipCode: "97600" },
+    { zipCode: "35200" },
+    { zipCode: "06000" },
+  ])("valid zip code", (zipObj) => {
+    it(`should return true for ${zipObj.zipCode}`, () => {
+      expect(validateZipCode(zipObj)).toBe(true);
     });
   });
 
-  it("should return false for an invalid French zip code", () => {
-    const invalidZipCodes = [
-      "75000",
-      "97500",
-      "00100",
-      "98000",
-      "99000",
-      "97700",
-      "97800",
-      "97900",
-    ];
-    invalidZipCodes.forEach((zip) => {
-      expect(validateZipCode({ zipCode: zip })).toBe(false);
+  describe.each([
+    { zipCode: "75000" },
+    { zipCode: "97500" },
+    { zipCode: "00100" },
+    { zipCode: "98000" },
+    { zipCode: "99000" },
+    { zipCode: "97700" },
+    { zipCode: "97800" },
+    { zipCode: "97900" },
+  ])("invalid zip code", (zipObj) => {
+    it(`should return false for ${zipObj.zipCode}`, () => {
+      expect(validateZipCode(zipObj)).toBe(false);
     });
   });
 
-  it("should throw a 'missing param' error", () => {
-    const errors = [
-      () => validateZipCode(),
-      () => validateZipCode({ name: "John", age: 30 }),
-      () => validateZipCode({ zipCode: null }),
-      () => validateZipCode({ zipCode: undefined }),
-    ];
-    errors.forEach((fn) => {
-      expect(fn).toThrow("missing param");
+  describe.each([
+    () => validateZipCode(),
+    () => validateZipCode({ name: "John", age: 30 }),
+    () => validateZipCode({ zipCode: null }),
+    () => validateZipCode({ zipCode: undefined }),
+  ])("missing param", (testCase) => {
+    it(`should throw a 'missing param' error`, () => {
+      expect(() => testCase()).toThrow("missing param");
     });
   });
 
-  it("should throw a 'bad param' error", () => {
-    const errors = [
-      () => validateZipCode({ zipCode: 75001 }),
-      () => validateZipCode({ zipCode: "9300" }),
-      () => validateZipCode({ zipCode: "930000" }),
-    ];
-
-    errors.forEach((fn) => {
-      expect(fn).toThrow("bad param");
+  describe.each([
+    () => validateZipCode({ zipCode: 75001 }),
+    () => validateZipCode({ zipCode: "9300" }),
+    () => validateZipCode({ zipCode: "930000" }),
+  ])("bad param", (testCase) => {
+    it(`should throw a 'bad param' error`, () => {
+      expect(() => testCase()).toThrow("bad param");
     });
   });
 });
