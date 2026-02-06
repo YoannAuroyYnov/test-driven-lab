@@ -144,7 +144,25 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,6 +175,9 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,6 +213,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,6 +229,9 @@
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,7 +259,11 @@
  * Validates if a person is 18 years old or older based on their birth date.
  *
  * @param {object} p An object representing a person, implementing a birth date
+ * @param {Date} p.birth The birth date of the person
  * @returns {boolean} true if the age is 18 or more, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
+ * @throws {Error} "not allowed"
  */
 export function validateAge(p) {
   const age = calculateAge(p);
@@ -244,7 +276,10 @@ export function validateAge(p) {
  * Validates if the given French zip code is valid.
  *
  * @param {object} p An object representing a person, implementing a zipCode
+ * @param {string} p.zipCode The zip code to validate
  * @return {boolean} true if the zip code is a valid French zip code, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
  */
 export function validateZipCode(p) {
   if (!p || !(p instanceof Object) || !p.zipCode)
@@ -270,7 +305,11 @@ export function validateZipCode(p) {
  * Validates if the given first name and last name are valid.
  *
  * @param {object} p An object representing a person, implementing a firstName and a lastName
+ * @param {string} p.firstName The first name to validate
+ * @param {string} p.lastName The last name to validate
  * @return {boolean} true if the first name and last name are valid, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
  */
 export function validateIndentity(p) {
   if (!p || !(p instanceof Object) || !p.firstname || !p.lastname)
@@ -291,7 +330,10 @@ export function validateIndentity(p) {
  * Validates if the given email is valid.
  *
  * @param {object} p An object representing a person, implementing an email
+ * @param {string} p.email The email to validate
  * @return {boolean} true if the email is valid, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
  */
 export function validateEmail(p) {
   if (!p || !(p instanceof Object) || !p.email)
@@ -313,7 +355,7 @@ export function validateEmail(p) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-06T17:33:52.007Z
+                at 2026-02-06T17:42:11.238Z
             </div>
         <script src="prettify.js"></script>
         <script>

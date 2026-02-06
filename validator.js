@@ -4,7 +4,11 @@ import { calculateAge } from "./module";
  * Validates if a person is 18 years old or older based on their birth date.
  *
  * @param {object} p An object representing a person, implementing a birth date
+ * @param {Date} p.birth The birth date of the person
  * @returns {boolean} true if the age is 18 or more, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
+ * @throws {Error} "not allowed"
  */
 export function validateAge(p) {
   const age = calculateAge(p);
@@ -17,7 +21,10 @@ export function validateAge(p) {
  * Validates if the given French zip code is valid.
  *
  * @param {object} p An object representing a person, implementing a zipCode
+ * @param {string} p.zipCode The zip code to validate
  * @return {boolean} true if the zip code is a valid French zip code, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
  */
 export function validateZipCode(p) {
   if (!p || !(p instanceof Object) || !p.zipCode)
@@ -43,7 +50,11 @@ export function validateZipCode(p) {
  * Validates if the given first name and last name are valid.
  *
  * @param {object} p An object representing a person, implementing a firstName and a lastName
+ * @param {string} p.firstName The first name to validate
+ * @param {string} p.lastName The last name to validate
  * @return {boolean} true if the first name and last name are valid, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
  */
 export function validateIndentity(p) {
   if (!p || !(p instanceof Object) || !p.firstname || !p.lastname)
@@ -64,7 +75,10 @@ export function validateIndentity(p) {
  * Validates if the given email is valid.
  *
  * @param {object} p An object representing a person, implementing an email
+ * @param {string} p.email The email to validate
  * @return {boolean} true if the email is valid, false otherwise
+ * @throws {Error} "missing param"
+ * @throws {Error} "bad param"
  */
 export function validateEmail(p) {
   if (!p || !(p instanceof Object) || !p.email)
