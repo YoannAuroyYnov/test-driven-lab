@@ -68,7 +68,61 @@ describe("validateAge", () => {
  * @function validateZipCode
  */
 
-describe("validateZipCode", () => {});
+describe("validateZipCode", () => {
+  it("should return true for a valid French zip code", () => {
+    const validsZipCodes = [
+      "75001",
+      "20167",
+      "97139",
+      "97600",
+      "35200",
+      "06000",
+    ];
+    validsZipCodes.forEach((zip) => {
+      expect(validateZipCode({ zipCode: zip })).toBe(true);
+    });
+  });
+
+  it("should return false for an invalid French zip code", () => {
+    const invalidZipCodes = [
+      "75000",
+      "97500",
+      "00100",
+      "98000",
+      "99000",
+      "97700",
+      "97800",
+      "97900",
+    ];
+    invalidZipCodes.forEach((zip) => {
+      expect(validateZipCode({ zipCode: zip })).toBe(false);
+    });
+  });
+
+  it("should throw a 'missing param' error", () => {
+    const errors = [
+      () => validateZipCode(),
+      () => validateZipCode({ name: "John", age: 30 }),
+      () => validateZipCode({ zipCode: null }),
+      () => validateZipCode({ zipCode: undefined }),
+    ];
+    errors.forEach((fn) => {
+      expect(fn).toThrow("missing param");
+    });
+  });
+
+  it("should throw a 'bad param' error", () => {
+    const errors = [
+      () => validateZipCode({ zipCode: 75001 }),
+      () => validateZipCode({ zipCode: "9300" }),
+      () => validateZipCode({ zipCode: "930000" }),
+    ];
+
+    errors.forEach((fn) => {
+      expect(fn).toThrow("bad param");
+    });
+  });
+});
 
 /**
  * @function validateIndentity
